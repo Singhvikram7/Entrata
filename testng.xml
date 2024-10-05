@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Entrata/src/main/Entrata/EntrataUi.java">
+        <classes>
+            <class name="main.Entrata.EntrataUi">
+                <methods>
+                    <include name="verifyDriverTitle"/>
+                    <include name="veryFyAllProductListDisplayed"/>
+                    <include name="verifySignInMethods"/>
+                    <include name="verifyUserCanNavigateEachProductCategory"/>
+                    <include name="verifyWarningOfWatchDemoInEachBoxOfForm"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
