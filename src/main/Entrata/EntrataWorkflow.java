@@ -1,22 +1,13 @@
 package main.Entrata;
 
 import main.driverUtil.instanciateDriver;
-import org.checkerframework.checker.units.qual.A;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
-
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class EntrataWorkflow extends instanciateDriver {
-    static EntrataModule module = new EntrataModule();
-//    public EntrataWorkflow(){
-//        module=new EntrataModule();
-//    }
+    EntrataModule module = new EntrataModule();
 
-    public static List<String> getProductListOfEtantra() {
+    public List<String> getProductListOfEtantra() {
         try {
             AutomationHelper.moveToElement(module.getServiceElement("Products"));
             List<String> productCategory = AutomationHelper.getElementsText(module.getProductCategoryElements());
@@ -33,16 +24,15 @@ public class EntrataWorkflow extends instanciateDriver {
     public void verifyDriverTitle(String title) {
         try {
             // String title="Property Management Software | Entrata";
-            System.out.println("Info Title is >>> "+driver.getTitle());
+            System.out.println("Info >>> Title is:-  " + driver.getTitle());
             if (driver.getTitle().equals(title)) {
-                // System.out.println(driver.getTitle());
+                ;
                 System.out.println("Pass>>> Title got matched ");
                 Assert.assertTrue(true);
             } else {
                 System.out.println("Fail>>> Title did not got matched ");
                 Assert.assertTrue(false);
             }
-           // Assert.assertEquals(driver.getTitle(), title, "UI Title Got matched");
         } catch (Exception e) {
             System.out.println("Exception occurred while verifying Title");
             e.printStackTrace();
@@ -63,8 +53,6 @@ public class EntrataWorkflow extends instanciateDriver {
             clickOnSignInButton();
             verifyDriverTitle("Entrata Sign In");
             AutomationHelper.takesScreenShot();
-//            System.out.println(driver.getCurrentUrl());
-//            driver.navigate().to(driver.getCurrentUrl());
         } catch (Exception e) {
             System.out.println("Exception occurred while Navigating on SignIn Button");
             e.printStackTrace();
@@ -126,17 +114,21 @@ public class EntrataWorkflow extends instanciateDriver {
     }
 
     public void verifyWarningInEachBoxOfForm() {
-        String[] boxList = {"FirstName", "LastName", "Email", "Company", "Phone", "Title" };
-        for (String arr : boxList) {
-            AutomationHelper.moveAndClick(module.getDemoFormElement(arr));
-            AutomationHelper.explicitWait(UiElements.getDemoFormElementsWarnings(arr));
-            if (!module.getDemoFormElementsWarnings(arr).isDisplayed()) {
-                Assert.assertTrue(false);
-            } else {
-                String warning = AutomationHelper.getElementText(module.getDemoFormElementsWarnings(arr));
-                System.out.println("Warning " + warning + " got displayed when click on demo form box " + arr);
+        String[] boxList = {"FirstName", "LastName", "Email", "Company", "Phone", "Title"};
+        try {
+            for (String arr : boxList) {
+                AutomationHelper.moveAndClick(module.getDemoFormElement(arr));
+                if (!module.getDemoFormElementsWarnings(arr).isDisplayed()) {
+                    Assert.assertTrue(false);
+                } else {
+                    String warning = AutomationHelper.getElementText(module.getDemoFormElementsWarnings(arr));
+                    System.out.println("Warning " + warning + " got displayed when click on demo form box " + arr);
+                }
+                AutomationHelper.takesScreenShot();
             }
-            AutomationHelper.takesScreenShot();
+        } catch (Exception e) {
+            System.out.println("Exception occurred while verifying warning");
+            e.printStackTrace();
         }
     }
 }

@@ -6,8 +6,10 @@ Run Test Suites :- mvn verify
 in case mvn verify does not works Please use below command
 mvn clean test -DsuiteXmlFile=testng.xml
 _____________________________________________________________________________________________________________________________________________
-Instructions :-  In case if Facing issue while running cases please double check you dependency from maven
+Instructions :-  
+1:-In case if Facing issue while running cases please double check you dependency from maven
 and try to update if needed
+2:- We can also use Log4j to print logs of execution.
 _____________________________________________________________________________________________________________________________________________
 
 ________________________________________________________________________________________________________________________
@@ -22,16 +24,18 @@ AutomationHelper.Java -> Class contains reusable methods like get WebElement,Lis
 UiElements.Java -> This Class Storing Dom Objects of Entrata in String Form.
 
 EntraEnum.java -> This class contains Names of Multiple Product and methods etc . We can use this class
-to Store Unchangable objects. For expamle products of entrata.
+to Store Un changeable objects. For example products of Entrata.
 
 EntrataModule.java -> This class contains method to convert UiElements into WebElements , so that code should 
-be reausable and easy readable because All the web elements will be stored at same place. also we can
+be reusable and easy readable because All the web elements will be stored at same place. also we can
 make changes at one place for multiple web elements
 
 EntrataWorkFlow.java -> This class is doing multiple operation and validation for entrata module by use of 
 AutomationHelper.java class and EntrataModule.java
 
 EntaraUi.java ->This class is being used to run test cases.
+
+EntrataObjectHelper.class -> This will help to get the instance of objects.
 
 ______________________________________________________________________________________________________________________________________
 Config.Properties -> It contains browser name and url at one place so that if someone wants to run case in different browser
