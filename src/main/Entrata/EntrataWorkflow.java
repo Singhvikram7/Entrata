@@ -21,6 +21,10 @@ public class EntrataWorkflow extends instanciateDriver {
 
     }
 
+    public void moveToSolution(){
+        AutomationHelper.moveToElement(module.getServiceElement("Solutions"));
+    }
+
     public void verifyDriverTitle(String title) {
         try {
             // String title="Property Management Software | Entrata";
